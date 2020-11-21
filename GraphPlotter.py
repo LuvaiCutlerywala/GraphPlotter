@@ -6,13 +6,13 @@ def plot_graph(x_range, y_range) -> None:
     plotter.grid(True)
     plotter.show()
 
-def create_label(base, txt: str, s) -> None:
-    label = Label(base, text= txt)
-    label.pack(side = s)
+def create_label(base, txt: str, row, column) -> None:
+    label = Label(base, text= txt, font= 20)
+    label.grid(row= row, column= column)
 
-def create_entry(base) -> Entry:
+def create_entry(base, row, column) -> Entry:
     entry = Entry(base)
-    entry.pack()
+    entry.grid(row= row, column= column)
     entry.focus_set()
     return entry
 
@@ -26,12 +26,13 @@ def get_equation() -> None:
 
 base = Tk()
 base.title("Graph Plotter")
-create_label(base, "A: ", LEFT)
-a_entry = create_entry(base)
-create_label(base, "B: ", LEFT)
-b_entry = create_entry(base)
-create_label(base, "C: ", LEFT)
-c_entry = create_entry(base)
+base.config(width= 1000, height= 1000)
+create_label(base, "A: ", 0, 0)
+a_entry = create_entry(base, 0, 1)
+create_label(base, "B: ", 1, 0)
+b_entry = create_entry(base, 1, 1)
+create_label(base, "C: ", 2, 0)
+c_entry = create_entry(base, 2, 1)
 button = Button(base, text= "Plot", command= get_equation)
-button.pack()
+button.grid(row= 3)
 base.mainloop()
